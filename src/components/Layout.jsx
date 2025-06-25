@@ -43,7 +43,6 @@ export default function Layout() {
           <Link to="/properties" className="hover:text-red-primary">Properties</Link>
           <Link to="/services" className="hover:text-red-primary">Our Services</Link>
           <Link to="/about" className="hover:text-red-primary">About</Link>
-          <Link to="/team" className="hover:text-red-primary">Our Team</Link>
           <Link to="/news" className="hover:text-red-primary">News</Link>
           <Link to="/testimonials" className="hover:text-red-primary">Testimonials</Link>
         </nav>
@@ -73,7 +72,6 @@ export default function Layout() {
           <Link to="/properties" className="block hover:text-red-primary">Properties</Link>
           <Link to="/services" className="block hover:text-red-primary">Our Services</Link>
           <Link to="/about" className="block hover:text-red-primary">About</Link>
-          <Link to="/team" className="block hover:text-red-primary">Our Team</Link>
           <Link to="/news" className="block hover:text-red-primary">News</Link>
           <Link to="/testimonials" className="block hover:text-red-primary">Testimonials</Link>
         </nav>
