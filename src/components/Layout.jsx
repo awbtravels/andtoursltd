@@ -7,6 +7,7 @@ import Newsletter from "./Newsletter";
 export default function Layout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Live Chat Script
   useEffect(() => {
     const s1 = document.createElement("script");
     s1.src = "https://embed.tawk.to/68559a0aadefb9190f5fe0d5/1iu763f2p";
@@ -34,28 +35,11 @@ export default function Layout() {
         <nav className="hidden md:flex items-center gap-6 text-sm text-charcoal font-medium">
           <Link to="/" className="hover:text-red-primary">Home</Link>
           <Link to="/consultation" className="hover:text-red-primary">Booking Consultation</Link>
+          <Link to="/tours" className="hover:text-red-primary">Tours</Link>
           <Link to="/flights" className="hover:text-red-primary">Flight</Link>
           <Link to="/hotels" className="hover:text-red-primary">Hotel</Link>
           <Link to="/insurance" className="hover:text-red-primary">Insurance</Link>
           <Link to="/cars" className="hover:text-red-primary">Cars</Link>
-
-          {/* Tours Dropdown */}
-          <div className="relative group">
-            <button className="hover:text-red-primary">Tours ▾</button>
-            <ul className="absolute hidden group-hover:block bg-white border shadow-lg mt-2 text-sm w-56 z-50 text-gray-700">
-              <li><Link to="/tours/city" className="block px-4 py-2 hover:bg-gray-100">City Tours</Link></li>
-              <li><Link to="/tours/adventure" className="block px-4 py-2 hover:bg-gray-100">Adventure Tours</Link></li>
-              <li><Link to="/tours/cultural" className="block px-4 py-2 hover:bg-gray-100">Cultural & Historical</Link></li>
-              <li><Link to="/tours/day-trips" className="block px-4 py-2 hover:bg-gray-100">Day Trips & Excursions</Link></li>
-              <li><Link to="/tours/boat" className="block px-4 py-2 hover:bg-gray-100">Boat & Cruise Tours</Link></li>
-              <li><Link to="/tours/safari" className="block px-4 py-2 hover:bg-gray-100">Wildlife & Safari</Link></li>
-              <li><Link to="/tours/sightseeing" className="block px-4 py-2 hover:bg-gray-100">Sightseeing Packages</Link></li>
-              <li><Link to="/tours/religious" className="block px-4 py-2 hover:bg-gray-100">Religious Pilgrimages</Link></li>
-              <li><Link to="/tours/custom" className="block px-4 py-2 hover:bg-gray-100">Private/Custom Tours</Link></li>
-              <li><Link to="/tours/group" className="block px-4 py-2 hover:bg-gray-100">Group Tours</Link></li>
-            </ul>
-          </div>
-
           <Link to="/properties" className="hover:text-red-primary">Properties</Link>
           <Link to="/services" className="hover:text-red-primary">Our Services</Link>
           <Link to="/about" className="hover:text-red-primary">About</Link>
@@ -81,11 +65,11 @@ export default function Layout() {
         <nav className="md:hidden px-6 py-4 bg-white shadow text-sm text-charcoal font-medium space-y-2">
           <Link to="/" className="block hover:text-red-primary">Home</Link>
           <Link to="/consultation" className="block hover:text-red-primary">Booking Consultation</Link>
+          <Link to="/tours" className="block hover:text-red-primary">Tours</Link>
           <Link to="/flights" className="block hover:text-red-primary">Flight</Link>
           <Link to="/hotels" className="block hover:text-red-primary">Hotel</Link>
           <Link to="/insurance" className="block hover:text-red-primary">Insurance</Link>
           <Link to="/cars" className="block hover:text-red-primary">Cars</Link>
-          <Link to="/tours" className="block hover:text-red-primary">Tours</Link>
           <Link to="/properties" className="block hover:text-red-primary">Properties</Link>
           <Link to="/services" className="block hover:text-red-primary">Our Services</Link>
           <Link to="/about" className="block hover:text-red-primary">About</Link>
