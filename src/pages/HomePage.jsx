@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <div className="bg-white text-charcoal p-10">
       <h1 className="text-3xl font-bold text-center text-red-700 mb-4">
-        ✅ Welcome to AWB Travels and Tours!
+         Welcome to AWB Travels and Tours!
       </h1>
 
       <TestimonialsWithSlider />
