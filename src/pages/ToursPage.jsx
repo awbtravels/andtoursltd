@@ -3,39 +3,23 @@ import React from "react";
 
 export default function ToursPage() {
   return (
-    <section className="px-6 py-10 text-charcoal">
-      <h1 className="text-3xl font-bold text-red-primary mb-4">Explore Tours & Experiences</h1>
-      <p className="mb-6 max-w-3xl">
-        Discover unforgettable tours, sightseeing adventures, local activities, and cultural experiences with AWB Travels and Tours. Book guided city tours, nature explorations, cruises, and more—all while staying on our trusted platform.
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold text-red-700 mb-6">Explore Our Tour Packages</h1>
+      <p className="text-gray-700 mb-6">
+        Discover unforgettable adventures, cultural experiences, sightseeing, and more. Whether you're looking for a group tour, city excursion, or a custom trip, AWB Travels has the right package for you.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="border p-4 rounded-xl shadow-sm bg-white">
-          <h3 className="font-semibold text-lg mb-2">Local & International Tours</h3>
-          <p className="text-sm mb-4">Browse affiliate-powered tours across Nigeria and abroad—Dubai, UK, Canada, Kenya, and more.</p>
-          <a
-            href="https://tour.awbtravelsandtours.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-red-primary text-white px-4 py-2 rounded hover:bg-red-600"
-          >
-            Browse Tours
-          </a>
-        </div>
-
-        <div className="border p-4 rounded-xl shadow-sm bg-white">
-          <h3 className="font-semibold text-lg mb-2">Cultural & Historical Activities</h3>
-          <p className="text-sm mb-4">Explore affiliate tour experiences such as safaris, museums, food tastings, and landmark visits.</p>
-          <a
-            href="https://tour.awbtravelsandtours.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-red-primary text-white px-4 py-2 rounded hover:bg-red-600"
-          >
-            View Activities
-          </a>
-        </div>
-      </div>
-    </section>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm text-gray-800">
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🏙️ City Tours</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🌄 Adventure Tours</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🏛️ Cultural & Historical</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🚌 Day Trips & Excursions</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🚢 Boat & Cruise Tours</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🦁 Wildlife & Safari</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🗺️ Sightseeing Packages</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">🙏 Religious Pilgrimages</li>
+        <li className="border p-4 rounded shadow hover:shadow-md transition">👥 Private & Group Tours</li>
+      </ul>
+    </div>
   );
 }
