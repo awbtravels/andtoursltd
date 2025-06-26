@@ -7,7 +7,7 @@ const ConsultationSuccess = () => {
       <div className="max-w-xl mx-auto">
         <h2 className="text-3xl font-bold text-green-700 mb-4">🎉 Payment Successful</h2>
         <p className="text-lg mb-6">
-          Thank you for booking a visa consultation with AWB Travels and Tours. A confirmation email has been sent to your inbox.
+          Thank you for booking a visa consultation with AWB Travels and Tours Ltd. A confirmation email has been sent to your inbox.
         </p>
         <p className="text-md mb-8">We look forward to assisting you with your travel goals.</p>
         <Link
