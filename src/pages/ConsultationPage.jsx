@@ -159,8 +159,8 @@ const ConsultationPage = () => {
           min={today.toISOString().split("T")[0]}
           style={{ width: "100%" }}
         />
-        <p style={{ color: "gray", fontSize: "0.9rem" }}>Note: Appointments are only available Monday to Friday</p>
-
+        <p style={{ color: "red", fontWeight: "bold", fontSize: "0.9rem" }}>
+  ⚠️ Note: Appointments are only available Monday to Friday. No bookings on Saturday or Sunday.</p>
         <label style={{ marginTop: "1rem", display: "block" }}>
           Select your appointment time:
         </label>
