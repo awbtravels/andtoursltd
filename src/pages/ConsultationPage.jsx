@@ -1,11 +1,12 @@
 // src/pages/ConsultationPage.jsx
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 import { useNavigate } from "react-router-dom";
 
 const ConsultationPage = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -15,105 +16,163 @@ const ConsultationPage = () => {
     time: "",
   });
 
+  const [availableTimes, setAvailableTimes] = useState([]);
   const [error, setError] = useState("");
 
-  const isWeekend = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.getDay() === 0 || date.getDay() === 6;
-  };
+  const timeSlots = [
+    "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
+    "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM",
+    "3:00 PM", "3:30 PM", "4:00 PM"
+  ];
 
-  const isPastDate = (dateStr) => {
-    const today = new Date().setHours(0, 0, 0, 0);
-    const inputDate = new Date(dateStr).setHours(0, 0, 0, 0);
-    return inputDate < today;
-  };
+  const handleDateChange = (e) => {
+    const selectedDate = new Date(e.target.value);
+    const now = new Date();
+    const isToday = selectedDate.toDateString() === now.toDateString();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-    setError("");
+    let filteredSlots = [...timeSlots];
+
+    if (isToday) {
+      const currentHour = now.getHours();
+      const currentMinutes = now.getMinutes();
+
+      filteredSlots = filteredSlots.filter((slot) => {
+        const [hour, modifier] = slot.split(" ");
+        let [h, m] = hour.split(":").map(Number);
+        if (modifier === "PM" && h !== 12) h += 12;
+        const slotTime = h * 60 + m;
+        const currentTime = currentHour * 60 + currentMinutes;
+        return slotTime > currentTime;
+      });
+    }
+
+    setAvailableTimes(filteredSlots);
+    setFormData({ ...formData, date: e.target.value, time: "" });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const { firstName, lastName, email, phone, country, date, time } = form;
-
-    if (!firstName || !lastName || !email || !phone || !country || !date || !time) {
-      setError("Please fill all fields.");
+    if (!formData.date || !formData.time) {
+      setError("Please select a valid date and time.");
       return;
     }
 
-    if (isWeekend(date)) {
-      setError("Saturday and Sunday bookings are not allowed.");
-      return;
-    }
-
-    if (isPastDate(date)) {
-      setError("Selected date is in the past.");
-      return;
-    }
-
-    emailjs.send("service_oave8fr", "_ejs-test-mail-service_", {
-      to_name: firstName,
-      from_name: "AWB Travels and Tours",
-      to_email: email,
-      message: `Hello ${firstName},\n\nYour visa consultation for ${country} has been booked for ${date} at ${time}.`,
-    }, "GamSTUvtdCEHyRlM2");
-
-    emailjs.send("service_oave8fr", "_ejs-test-mail-service_", {
-      to_name: "AWB Admin",
-      from_name: "AWB Website",
-      to_email: "awbtravelsntours@outlook.com",
-      message: `New consultation:\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nCountry: ${country}\nDate: ${date}\nTime: ${time}`,
-    }, "GamSTUvtdCEHyRlM2");
-
-    const paystackLink = `https://paystack.com/pay/awbconsultation`;
-    window.location.href = paystackLink;
-
+    // Paystack redirect
+    localStorage.setItem("consultationData", JSON.stringify(formData));
     navigate("/consultation-success");
+
+    // Send email
+    emailjs.send("service_oave8fr", "_ejs-test-mail-service", {
+      from_name: `${formData.firstName} ${formData.lastName}`,
+      to_name: "AWB Travels and Tours",
+      message: `
+        New Visa Consultation Booking:
+
+        Name: ${formData.firstName} ${formData.lastName}
+        Email: ${formData.email}
+        Phone: ${formData.phone}
+        Country of Interest: ${formData.country}
+        Appointment Date: ${formData.date}
+        Appointment Time: ${formData.time}
+      `,
+      reply_to: formData.email,
+    }, "GamSTUvtdCEHyRlM2").then(
+      () => console.log("Email sent successfully"),
+      (err) => console.error("Email send error:", err)
+    );
   };
 
-  const getAvailableTimes = () => {
-    const times = [];
-    for (let hour = 11; hour <= 16; hour++) {
-      times.push(`${hour}:00 PM`);
-      times.push(`${hour}:30 PM`);
-    }
-    return times;
+  const getMinDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
+  const isWeekend = (dateStr) => {
+    const date = new Date(dateStr);
+    const day = date.getDay();
+    return day === 6 || day === 0;
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <h2 className="text-xl font-bold text-red-600">AWB Travels and Tours Ltd RC:7177769</h2>
-      <p className="text-black">....fulfilling your dream life</p>
-      <h3 className="text-red-600 text-lg font-semibold mt-2">Visa Consultation Booking (₦50,000)</h3>
+    <div style={{ padding: "2rem" }}>
+      <h2 style={{ color: "red", fontWeight: "bold" }}>AWB Travels and Tours Ltd RC:7177769</h2>
+      <h3 style={{ color: "black" }}>....fulfilling your dream life</h3>
+      <h3 style={{ color: "red" }}>Visa Consultation Booking (₦50,000)</h3>
 
-      <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-        <input type="text" name="firstName" placeholder="First Name" className="w-full p-2 border" onChange={handleChange} />
-        <input type="text" name="lastName" placeholder="Last Name" className="w-full p-2 border" onChange={handleChange} />
-        <input type="email" name="email" placeholder="Email" className="w-full p-2 border" onChange={handleChange} />
-        <input type="tel" name="phone" placeholder="Phone Number" className="w-full p-2 border" onChange={handleChange} />
-        <input type="text" name="country" placeholder="Country of Interest" className="w-full p-2 border" onChange={handleChange} />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="First Name"
+          required
+          value={formData.firstName}
+          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          required
+          value={formData.lastName}
+          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+        />
+        <input
+          type="tel"
+          placeholder="Phone Number"
+          required
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+        />
+        <input
+          type="text"
+          placeholder="Country of Interest"
+          required
+          value={formData.country}
+          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+        />
 
         <input
           type="date"
-          name="date"
-          className="w-full p-2 border"
-          min={new Date().toISOString().split("T")[0]}
-          onChange={handleChange}
+          required
+          min={getMinDate()}
+          value={formData.date}
+          onChange={handleDateChange}
+          onBlur={() => {
+            if (isWeekend(formData.date)) {
+              setError("Appointments cannot be booked on Saturdays or Sundays.");
+              setFormData({ ...formData, date: "", time: "" });
+              setAvailableTimes([]);
+            } else {
+              setError("");
+            }
+          }}
         />
 
-        <select name="time" className="w-full p-2 border" onChange={handleChange}>
-          <option value="">Select Time</option>
-          {getAvailableTimes().map((time) => (
-            <option key={time} value={time}>{time}</option>
-          ))}
-        </select>
+        {availableTimes.length > 0 && (
+          <select
+            required
+            value={formData.time}
+            onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+          >
+            <option value="">Select Time</option>
+            {availableTimes.map((slot) => (
+              <option key={slot} value={slot}>
+                {slot}
+              </option>
+            ))}
+          </select>
+        )}
 
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
-        <button type="submit" className="bg-red-600 text-white px-4 py-2 mt-2 rounded">Book Now & Pay via Paystack</button>
+        <button type="submit" style={{ backgroundColor: "red", color: "white", marginTop: "10px" }}>
+          Book Now & Pay via Paystack
+        </button>
       </form>
     </div>
   );
