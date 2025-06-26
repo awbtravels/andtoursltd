@@ -29,7 +29,6 @@
   text-decoration: underline;
 }
 
-/* Modal styling */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -54,15 +53,14 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
-/* ✅ WhatsApp channel fixed middle-right */
+/* WhatsApp Channel Floating (Middle Right) */
 .whatsapp-fixed {
   position: fixed;
+  top: 35%;
   right: 0;
-  top: 40%;
-  width: 280px;
+  width: 300px;
   height: 380px;
   z-index: 999;
   border: none;
-  background: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
