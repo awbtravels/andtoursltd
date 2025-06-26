@@ -1,3 +1,4 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,6 +8,19 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- ✅ Paystack Inline Script -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <!-- ✅ EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("GamSTUvtdCEHyRlM2"); // ✅ Your EmailJS Public API Key
+      })();
+    </script>
+
+    <!-- ✅ Main React App -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
