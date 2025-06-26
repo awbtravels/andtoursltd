@@ -1,18 +1,19 @@
 // src/pages/NewsPage.jsx
-import React, { useEffect, useState } from "react";
-import Parser from "rss-parser";
-import "./NewsPage.css";
+import React, { useEffect, useState } from 'react';
+import Parser from 'rss-parser';
+import './NewsPage.css';
 
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState(null);
-  const [modalContent, setModalContent] = useState(null);
-  const parser = new Parser();
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
+  const parser = new Parser();
   const feedUrls = [
-    "https://daadscholarship.com/feed/",
-    "https://travelobiz.com/feed/",
-    "https://brightscholarship.com/feed/"
+    'https://daadscholarship.com/feed/',
+    'https://travelobiz.com/feed/',
+    'https://brightscholarship.com/feed/',
+    'https://goldrateinpak.com/feed/'
   ];
 
   useEffect(() => {
@@ -21,57 +22,51 @@ const NewsPage = () => {
         const allArticles = [];
         for (const url of feedUrls) {
           const feed = await parser.parseURL(url);
-          allArticles.push(...feed.items);
+          feed.items.forEach(item => {
+            allArticles.push(item);
+          });
         }
-        const sorted = allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+        const sorted = allArticles.sort(
+          (a, b) => new Date(b.pubDate) - new Date(a.pubDate)
+        );
         setArticles(sorted);
       } catch (err) {
-        setError("Failed to load news.");
-        console.error(err);
+        setError('Failed to load news. Please try again later.');
       }
     };
 
     fetchFeeds();
   }, []);
 
-  const openModal = (article) => {
-    setModalContent(article);
-  };
-
-  const closeModal = () => {
-    setModalContent(null);
-  };
-
   return (
     <div className="news-container">
-      <h1 className="news-header">Latest Travel News</h1>
+      <h2 className="news-header">Latest Travel News</h2>
       {error && <p>{error}</p>}
-      {!error && articles.length === 0 && <p>Loading news...</p>}
       <ul className="news-list">
-        {articles.map((item, index) => (
-          <li key={index} className="news-item" onClick={() => openModal(item)}>
-            <strong>{item.title}</strong> <br />
-            <small>{new Date(item.pubDate).toLocaleString()}</small>
+        {articles.map((article, index) => (
+          <li key={index} className="news-item" onClick={() => setSelectedArticle(article)}>
+            <strong>{new Date(article.pubDate).toISOString().split('T')[0]}</strong> — {article.title}
           </li>
         ))}
       </ul>
 
-      {modalContent && (
-        <div className="modal-overlay" onClick={closeModal}>
+      {/* Modal Viewer */}
+      {selectedArticle && (
+        <div className="modal-overlay" onClick={() => setSelectedArticle(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2>{modalContent.title}</h2>
-            <p dangerouslySetInnerHTML={{ __html: modalContent.content || modalContent.contentSnippet }}></p>
-            <p><a href={modalContent.link} target="_blank" rel="noopener noreferrer">Read Original</a></p>
-            <button onClick={closeModal}>Close</button>
+            <h3>{selectedArticle.title}</h3>
+            <p dangerouslySetInnerHTML={{ __html: selectedArticle.content || selectedArticle.contentSnippet }} />
+            <button onClick={() => setSelectedArticle(null)}>Close</button>
           </div>
         </div>
       )}
 
-      {/* Fixed WhatsApp Channel Embed */}
+      {/* WhatsApp Channel Fixed Iframe */}
       <iframe
         className="whatsapp-fixed"
         src="https://whatsapp.com/channel/0029VbAYnee7NoZyRmuvrT2P"
-        title="AWB WhatsApp Channel"
+        title="WhatsApp Channel"
+        allow="clipboard-write"
       ></iframe>
     </div>
   );
