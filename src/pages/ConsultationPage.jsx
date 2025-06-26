@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ConsultationPage = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -16,9 +17,10 @@ const ConsultationPage = () => {
   });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
@@ -26,15 +28,14 @@ const ConsultationPage = () => {
     e.preventDefault();
 
     const handler = window.PaystackPop.setup({
-      key: 'pk_live_0e2a65ed46c1518a031836f1b237091d8e9be2ba', // ✅ Replace with your public Paystack key
+      key: 'pk_live_0e2a65ed46c1518a031836f1b237091d8e9be2ba',
       email: formData.email,
-      amount: 50000 * 100, // ₦50,000
+      amount: 50000 * 100,
       currency: 'NGN',
       callback: () => {
-        // ✅ Send confirmation email after successful payment
         emailjs.send(
-          'service_oave8fr',             // ✅ Your Service ID
-          '_ejs-test-mail-service_',     // ✅ Your Template ID
+          'service_oave8fr',
+          '_ejs-test-mail-service_',
           {
             firstName: formData.firstName,
             lastName: formData.lastName,
@@ -44,10 +45,10 @@ const ConsultationPage = () => {
             preferredDate: formData.preferredDate,
             preferredTime: formData.preferredTime,
           },
-          'GamSTUvtdCEHyRlM2'             // ✅ Your Public API Key
+          'GamSTUvtdCEHyRlM2'
         );
 
-        navigate('/consultation-success'); // ✅ Redirect on success
+        navigate('/consultation-success');
       },
     });
 
@@ -55,13 +56,10 @@ const ConsultationPage = () => {
   };
 
   return (
-    <div className="container" style={{ padding: '2rem' }}>
+    <div style={{ padding: '2rem' }}>
       <h2 style={{ color: 'darkred' }}>
-        AWB Travels and Tours Ltd RC:7177769
-        <br />
-        <small style={{ fontStyle: 'italic', fontWeight: 'normal' }}>
-          ....fulfilling your dream life
-        </small>
+        AWB Travels and Tours Ltd RC:7177769<br />
+        <small style={{ fontStyle: 'italic' }}>....fulfilling your dream life</small>
       </h2>
 
       <h3 style={{ marginTop: '1.5rem', color: '#444' }}>
@@ -109,7 +107,17 @@ const ConsultationPage = () => {
           <option>4:00 PM</option>
         </select>
 
-        <button type="submit" style={{ marginTop: '1rem', backgroundColor: 'crimson', color: '#fff' }}>
+        <button
+          type="submit"
+          style={{
+            marginTop: '1rem',
+            backgroundColor: 'crimson',
+            color: '#fff',
+            padding: '10px',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
           Book Now & Pay via Paystack
         </button>
       </form>
