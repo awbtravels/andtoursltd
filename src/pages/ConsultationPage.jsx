@@ -67,7 +67,7 @@ const ConsultationPage = () => {
     const paystack = window.PaystackPop && window.PaystackPop.setup({
       key: "pk_live_0e2a65ed46c1518a031836f1b237091d8e9be2ba",
       email: formData.email,
-      amount: 50000 * 100,
+      amount: 1000 * 100,
       currency: "NGN",
       firstname: formData.firstName,
       lastname: formData.lastName,
