@@ -112,7 +112,7 @@ const ConsultationPage = () => {
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
       <h2 style={{ color: "red" }}>AWB Travels and Tours Ltd RC:7177769</h2>
       <h3 style={{ color: "black" }}>....fulfilling your dream life</h3>
-      <h3 style={{ color: "red" }}>Visa Consultation Booking (₦50,000)</h3>
+      <h3 style={{ color: "red" }}>Visa Consultation Booking (₦1,000)</h3>
 
       <form onSubmit={handleSubmit}>
         <div style={{ display: "flex", gap: "1rem" }}>
