@@ -9,7 +9,7 @@ export default function Cars() {
       </h1>
 
       <p className="text-base text-center max-w-2xl mx-auto mb-8">
-        Discover car rental and purchase opportunities through our trusted affiliate partners.
+        Discover car rental and purchase opportunities.
         Click the buttons below to explore available vehicles, deals, and rental offers.
       </p>
 
@@ -18,7 +18,7 @@ export default function Cars() {
           <h2 className="text-xl font-semibold mb-2">Affordable Car Rentals</h2>
           <p className="text-sm mb-4">Get the best prices for daily or weekly car rentals worldwide.</p>
           <a
-            href="https://expedia.com/affiliates/awb_travels_and_tours_ltd/awbtravelsandtours"
+            href="https://affiliate-link-for-car-rentals.com"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-red-primary text-white px-4 py-2 rounded hover:bg-red-600"
