@@ -5,7 +5,7 @@ export default function Flights() {
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
-      "https://tpscr.com/content?currency=usd&trs=430601&shmarker=644340&show_hotels=true&powered_by=true&locale=en&searchUrl=www.aviasales.com%2Fsearch&primary_override=%23DD3E11ff&color_button=%23CA1818ff&color_icons=%239D2A24ff&dark=%23262626ff&light=%23FFFFFFff&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%238D2D18ff&border_radius=17&no_labels=true&plain=true&promo_id=7879&campaign_id=100";
+      "https://tpscr.com/content?currency=usd&trs=430601&shmarker=644340&show_hotels=true&powered_by=true&locale=en&searchUrl=www.aviasales.com%2Fsearch&primary_override=%23DD4B32ff&color_button=%23DD3232ff&color_icons=%23DD3232ff&dark=%23262626&light=%23FFFFFFff&secondary=%23FFFFFF&special=%23C4C4C4&color_focused=%23DD3232ff&border_radius=0&no_labels=true&plain=true&promo_id=7879&campaign_id=100";
     script.async = true;
     script.charset = "utf-8";
     document.getElementById("aviasales-widget-container").appendChild(script);
