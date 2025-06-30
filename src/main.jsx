@@ -22,7 +22,9 @@ import Properties from "./pages/Properties";
 import ToursPage from "./pages/ToursPage";
 import TourListByCategory from "./pages/TourListByCategory";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
