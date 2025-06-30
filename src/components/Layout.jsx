@@ -3,9 +3,35 @@ import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Newsletter from "./Newsletter";
+import emailjs from "@emailjs/browser"; // Add this import
 
 export default function Layout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Newsletter welcome email
+  useEffect(() => {
+    const form = document.querySelector("#mc-embedded-subscribe-form");
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        const emailInput = document.querySelector("#mce-EMAIL");
+        if (emailInput && emailInput.value) {
+          emailjs
+            .send(
+              "service_oave8fr",
+              "template_tdg66zs", // newsletter template
+              { user_email: emailInput.value },
+              "GamSTUvtdCEHyRlM2"
+            )
+            .then((res) => {
+              console.log("Welcome email sent:", res.status);
+            })
+            .catch((err) => {
+              console.error("Newsletter welcome email error:", err);
+            });
+        }
+      });
+    }
+  }, []);
 
   // Live Chat Script
   useEffect(() => {
