@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "fetch-news": "node scripts/fetchNews.js"
+    "fetch-news": "node scripts/fetchNews.js"   // ✅ Matches exact file name (camelCase)
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
