@@ -12,46 +12,52 @@ const TourResults = () => {
     const fetchTours = async () => {
       try {
         const response = await fetch(
-          `https://sandbox.viator.com/partner/v1/products/search?topX=10&categoryId=${categoryId}&destId=6840`, // London ID
+          `https://sandbox.viator.com/partner/v1/products/search?topX=10&categoryId=${categoryId}&destId=6840`,
           {
             headers: {
               'Accept': 'application/json',
-              'exp-api-key': '8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2'
-            }
+              'exp-api-key': '8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2',
+            },
           }
         );
 
         const data = await response.json();
-        setTours(data.data || []);
+        console.log("Viator API Response:", data); // ✅ Use browser console to check response
+
+        if (data && Array.isArray(data.data)) {
+          setTours(data.data);
+        } else {
+          setError('No tours found for this category.');
+          console.error("Unexpected API response:", data);
+        }
       } catch (err) {
-        console.error(err);
         setError('Failed to load tours. Please try again.');
+        console.error("Fetch error:", err);
       }
     };
 
-    fetchTours();
+    if (categoryId) {
+      fetchTours();
+    }
   }, [categoryId]);
 
   return (
     <div className="p-6 text-white">
-      <h1 className="text-2xl font-bold text-red-500 mb-4">Tour Results</h1>
+      <h2 className="text-2xl font-bold mb-4 text-red-500">Tour Results</h2>
       {error && <p className="text-red-400">{error}</p>}
-      {tours.length === 0 && !error && (
-        <p className="text-gray-400">Loading tours...</p>
-      )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {tours.map((tour) => (
-          <div key={tour.productCode} className="border border-red-500 rounded-lg p-4 hover:bg-red-500 hover:text-white transition">
-            <h2 className="text-xl font-semibold">{tour.title}</h2>
-            <p>{tour.shortDescription?.substring(0, 120)}...</p>
-            <a
-              href={tour.webURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-block text-sm underline text-white"
-            >
-              View Details
-            </a>
+          <div key={tour.productCode} className="border rounded-xl p-4 bg-gray-800">
+            <img
+              src={tour.thumbnailURL}
+              alt={tour.title}
+              className="w-full h-48 object-cover rounded mb-3"
+            />
+            <h3 className="text-lg font-semibold">{tour.title}</h3>
+            <p className="text-sm">{tour.description?.substring(0, 100)}...</p>
+            <p className="mt-2 text-green-400 font-semibold">
+              From {tour.pricingSummary?.fromPrice?.formatted} {tour.pricingSummary?.fromPrice?.currencyCode}
+            </p>
           </div>
         ))}
       </div>
