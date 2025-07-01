@@ -1,7 +1,8 @@
 // src/pages/NewsDetails.jsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import newsData from '../../public/news.json'; // Adjust if your path differs
+import { FaWhatsapp, FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import newsData from '../../public/news.json';
 import './NewsPage.css';
 
 const NewsDetails = () => {
@@ -31,40 +32,44 @@ const NewsDetails = () => {
         <p className="news-excerpt">{article.excerpt}</p>
 
         {/* Share Section */}
-        <div style={{ marginTop: 20 }}>
+        <div style={{ marginTop: 30 }}>
           <h4 className="text-gray-700 font-semibold mb-2">Share this article:</h4>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <a
-              className="read-more"
               href={`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + '\n' + shareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
+              className="read-more"
+              style={{ display: 'flex', alignItems: 'center', gap: 8 }}
             >
-              WhatsApp
+              <FaWhatsapp /> WhatsApp
             </a>
             <a
-              className="read-more"
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
               target="_blank"
               rel="noopener noreferrer"
+              className="read-more"
+              style={{ display: 'flex', alignItems: 'center', gap: 8 }}
             >
-              Facebook
+              <FaFacebookF /> Facebook
             </a>
             <a
-              className="read-more"
               href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(article.title)}`}
               target="_blank"
               rel="noopener noreferrer"
+              className="read-more"
+              style={{ display: 'flex', alignItems: 'center', gap: 8 }}
             >
-              Twitter
+              <FaTwitter /> Twitter
             </a>
             <a
-              className="read-more"
               href={`https://www.linkedin.com/shareArticle?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(article.title)}`}
               target="_blank"
               rel="noopener noreferrer"
+              className="read-more"
+              style={{ display: 'flex', alignItems: 'center', gap: 8 }}
             >
-              LinkedIn
+              <FaLinkedinIn /> LinkedIn
             </a>
           </div>
         </div>
