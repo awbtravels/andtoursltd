@@ -1,3 +1,4 @@
+# .github/workflows/fetch-news.yml
 name: 📰 Auto-Fetch News Every 20 Minutes
 
 on:
@@ -22,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Run News Fetch Script
-        run: npm run fetch-news  # ✅ uses script from package.json
+        run: npm run fetch-news  # ✅ Uses script from package.json
 
       - name: Commit & Push Updated News
         run: |
