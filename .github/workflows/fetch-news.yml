@@ -1,3 +1,4 @@
+# .github/workflows/fetch-news.yml
 name: 📰 Auto-Fetch News Every 20 Minutes
 
 on:
@@ -22,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Run News Fetch Script
-        run: node scripts/fetchNews.js  # ✅ Exact match (case-sensitive)
+        run: node scripts/fetchNews.js   # ✅ Correct path and case!
 
       - name: Commit & Push Updated News
         run: |
