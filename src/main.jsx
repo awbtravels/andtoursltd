@@ -15,7 +15,7 @@ import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
 import Team from "./pages/TeamPage";
 import NewsPage from "./pages/NewsPage";
-import NewsDetails from "./pages/NewsDetails"; // ✅ NEW
+import NewsDetails from "./pages/NewsDetails";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
@@ -41,7 +41,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="about" element={<AboutPage />} />
           <Route path="team" element={<Team />} />
           <Route path="news" element={<NewsPage />} />
-          <Route path="news/:slug" element={<NewsDetails />} /> {/* ✅ NEW ROUTE */}
+          <Route path="news/:slug" element={<NewsDetails />} />
           <Route path="testimonials" element={<TestimonialsPage />} />
         </Route>
       </Routes>
