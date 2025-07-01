@@ -22,11 +22,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Show script files (debug)
-        run: ls -R scripts
+      - name: Debug Directory
+        run: ls -la scripts
 
-      - name: Run News Fetch Script using npx
-        run: npx node scripts/fetchNews.js
+      - name: Run News Fetch Script via npm
+        run: npm run fetch-news
 
       - name: Commit & Push Updated News
         run: |
