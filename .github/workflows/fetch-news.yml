@@ -1,9 +1,8 @@
-# .github/workflows/fetch-news.yml
 name: 📰 Auto-Fetch News Every 20 Minutes
 
 on:
   schedule:
-    - cron: '*/20 * * * *'
+    - cron: '*/20 * * * *'  # Every 20 minutes
   workflow_dispatch:
 
 jobs:
@@ -22,11 +21,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Debug Directory
-        run: ls -la scripts
-
-      - name: Run News Fetch Script via npm
-        run: npm run fetch-news
+      - name: Run News Fetch Script
+        run: npm run fetch-news  # ✅ uses script from package.json
 
       - name: Commit & Push Updated News
         run: |
