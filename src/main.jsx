@@ -1,10 +1,10 @@
-// src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import "./index.css";
 
+// Page components
 import HomePage from "./pages/HomePage";
 import ConsultationPage from "./pages/ConsultationPage";
 import ConsultationSuccess from "./pages/ConsultationSuccess";
@@ -19,7 +19,7 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
 import ToursPage from "./pages/ToursPage";
-import TourResults from "./pages/TourResults";
+import TourResults from "./pages/TourResults"; // ✅ NEW: Dynamic tour results route
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
