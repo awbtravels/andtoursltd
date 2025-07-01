@@ -20,7 +20,7 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
 import ToursPage from "./pages/ToursPage";
-import TourResults from "./pages/TourResults"; // Category-based tour results
+import TourResults from "./pages/TourResults"; // ✅ Must be imported to fix error
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
