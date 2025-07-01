@@ -3,7 +3,7 @@ name: 📰 Auto-Fetch News Every 20 Minutes
 
 on:
   schedule:
-    - cron: '*/20 * * * *'  # Every 20 minutes
+    - cron: '*/20 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Run News Fetch Script
-        run: node scripts/fetchNews.js   # ✅ Correct path and case!
+        run: node scripts/fetchNews.js   # ✅ MATCHES file name (camelCase)
 
       - name: Commit & Push Updated News
         run: |
