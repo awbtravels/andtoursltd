@@ -1,3 +1,4 @@
+// src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,7 +20,7 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
 import ToursPage from "./pages/ToursPage";
-import TourResults from "./pages/TourResults"; // ✅ Tour results page (Viator)
+import TourResults from "./pages/TourResults"; // New results page
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -30,7 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="consultation" element={<ConsultationPage />} />
           <Route path="consultation-success" element={<ConsultationSuccess />} />
           <Route path="tours" element={<ToursPage />} />
-          <Route path="tours/category/:categoryId" element={<TourResults />} /> {/* ✅ Dynamic tour results */}
+          <Route path="tours/category/:categoryId" element={<TourResults />} />
           <Route path="flights" element={<Flights />} />
           <Route path="hotels" element={<Hotels />} />
           <Route path="insurance" element={<Insurance />} />
