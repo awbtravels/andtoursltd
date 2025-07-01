@@ -1,9 +1,8 @@
-// src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import "./index.css"; // Tailwind CSS
+import "./index.css";
 
 // Page components
 import HomePage from "./pages/HomePage";
@@ -20,7 +19,7 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
 import ToursPage from "./pages/ToursPage";
-import TourResults from "./pages/TourResults"; // ✅ Must be imported to fix error
+import TourResults from "./pages/TourResults"; // ✅ Tour results page
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
