@@ -1,84 +1,48 @@
-// src/pages/TourResults.jsx
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+// src/pages/ToursPage.jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function TourResults() {
-  const { categoryId } = useParams();
-  const [tours, setTours] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// ✅ Replace with real Viator category IDs
+const tourCategories = [
+  { name: "City Tours", icon: "🏙️", category: 10103 },
+  { name: "Adventure Tours", icon: "🌄", category: 10116 },
+  { name: "Cultural & Historical", icon: "🏛️", category: 10100 },
+  { name: "Day Trips & Excursions", icon: "🚌", category: 10104 },
+  { name: "Boat & Cruise Tours", icon: "🚢", category: 10102 },
+  { name: "Wildlife & Safari", icon: "🦁", category: 10117 },
+  { name: "Sightseeing Packages", icon: "🗺️", category: 10101 },
+  { name: "Religious Pilgrimages", icon: "🙏", category: 20295 },
+  { name: "Private & Group Tours", icon: "👥", category: 10122 },
+];
 
-  useEffect(() => {
-    const fetchTours = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        const response = await axios.get(
-          "https://api.sandbox.viator.com/partner/v1/products/search",
-          {
-            headers: {
-              "exp-api-key": "8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2", // ✅ Viator Sandbox Key
-            },
-            params: {
-              topX: 15,
-              sortOrder: "RELEVANCE",
-              categoryId: categoryId,
-              locationId: 684, // ✅ New York - Viator sandbox supports this
-              currencyCode: "USD",
-              country: "US",
-            },
-          }
-        );
-        setTours(response.data.data);
-      } catch (err) {
-        console.error(err);
-        setError("Failed to load tours. Please try again.");
-      }
-      setLoading(false);
-    };
-    fetchTours();
-  }, [categoryId]);
+export default function ToursPage() {
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/tours/category/${categoryId}`);
+  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-2xl font-bold text-red-700 mb-4 capitalize">
-        {categoryId.replace("-", " ")} Tours
-      </h1>
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold text-red-700 mb-6">Explore Our Tour Packages</h1>
+      <p className="text-gray-700 mb-6">
+        Discover unforgettable adventures, cultural experiences, sightseeing, and more.
+        Whether you're looking for a group tour, city excursion, or a custom trip,
+        <strong> AWB Travels </strong> has the right package for you.
+      </p>
 
-      {loading && <p>Loading tours...</p>}
-      {error && <p className="text-red-600">{error}</p>}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tours.map((tour) => (
-          <div
-            key={tour.productCode}
-            className="border rounded shadow hover:shadow-lg transition overflow-hidden"
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-sm text-gray-800">
+        {tourCategories.map((cat) => (
+          <li
+            key={cat.category}
+            onClick={() => handleCategoryClick(cat.category)}
+            className="border p-4 rounded shadow hover:shadow-md transition cursor-pointer hover:bg-gray-50"
           >
-            <img
-              src={tour.thumbnailURL}
-              alt={tour.title}
-              className="w-full h-52 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-lg font-semibold mb-2">{tour.title}</h2>
-              <p className="text-sm text-gray-600 line-clamp-3 mb-3">
-                {tour.shortDescription || "No description available."}
-              </p>
-              <p className="font-bold text-red-600 mb-2">
-                From ${tour.pricingSummary?.fromPrice}{" "}
-                {tour.pricingSummary?.currencyCode}
-              </p>
-              <a
-                href={`/tours/details/${tour.productCode}`}
-                className="inline-block mt-2 text-white bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
-              >
-                View Details
-              </a>
-            </div>
-          </div>
+            <span className="mr-2 text-xl">{cat.icon}</span>
+            {cat.name}
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
