@@ -8,6 +8,7 @@ on:
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -21,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Run News Fetch Script
-        run: node scripts/fetch-news.js
+        run: node scripts/fetchNews.js
 
       - name: Commit & Push Updated News
         run: |
