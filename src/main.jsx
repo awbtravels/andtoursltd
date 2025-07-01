@@ -19,12 +19,10 @@ import NewsPage from "./pages/NewsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
-import ToursPage from "./pages/ToursPage";
-import TourListByCategory from "./pages/TourListByCategory";
+import ToursPage from "./pages/ToursPage"; // ✅ Tours page added
+import TourListByCategory from "./pages/TourListByCategory"; // ✅ Tour category listing
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
