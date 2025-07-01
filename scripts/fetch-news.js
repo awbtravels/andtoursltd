@@ -1,3 +1,4 @@
+// scripts/fetch-news.js
 const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
@@ -59,7 +60,6 @@ async function fetchNews() {
     }
   }
 
-  // ✅ Ensure public/ exists
   if (!fs.existsSync('./public')) {
     fs.mkdirSync('./public');
   }
