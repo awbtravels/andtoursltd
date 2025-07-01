@@ -19,33 +19,29 @@ import NewsPage from "./pages/NewsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
-import ToursPage from "./pages/ToursPage";
-import TourResults from "./pages/TourResults"; // ✅ Required import
+import ToursPage from "./pages/ToursPage"; // Tours page
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="consultation" element={<ConsultationPage />} />
-          <Route path="consultation-success" element={<ConsultationSuccess />} />
-          <Route path="tours" element={<ToursPage />} />
-          <Route path="tours/category/:categoryId" element={<TourResults />} />
-          <Route path="flights" element={<Flights />} />
-          <Route path="hotels" element={<Hotels />} />
-          <Route path="insurance" element={<Insurance />} />
-          <Route path="cars" element={<Cars />} />
-          <Route path="properties" element={<Properties />} />
-          <Route path="services" element={<ServicesPage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="team" element={<Team />} />
-          <Route path="news" element={<NewsPage />} />
-          <Route path="testimonials" element={<TestimonialsPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+<React.StrictMode>
+<BrowserRouter>
+<Routes>
+<Route path="/" element={<Layout />}>
+<Route index element={<HomePage />} />
+<Route path="consultation" element={<ConsultationPage />} />
+<Route path="consultation-success" element={<ConsultationSuccess />} />
+<Route path="tours" element={<ToursPage />} />
+<Route path="flights" element={<Flights />} />
+<Route path="hotels" element={<Hotels />} />
+<Route path="insurance" element={<Insurance />} />
+<Route path="cars" element={<Cars />} />
+<Route path="properties" element={<Properties />} />
+<Route path="services" element={<ServicesPage />} />
+<Route path="about" element={<AboutPage />} />
+<Route path="team" element={<Team />} />
+<Route path="news" element={<NewsPage />} />
+<Route path="testimonials" element={<TestimonialsPage />} />
+</Route>
+</Routes>
+</BrowserRouter>
+</React.StrictMode>
 );
