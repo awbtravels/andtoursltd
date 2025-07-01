@@ -1,38 +1,32 @@
-# .github/workflows/fetch-news.yml
-
-name: ✨ Auto-Fetch News Every Hour
+name: ✨ Auto-Fetch News Every 20 Minutes
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every 1 hour
+    - cron: '*/20 * * * *'  # Every 20 minutes
   workflow_dispatch:
 
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
-      - name: Install dependencies
-        run: |
-          npm install axios cheerio
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Fetch latest news from 4 sources
-        run: |
-          node scripts/fetchNews.js
+      - name: Run News Fetch Script
+        run: node scripts/fetch-news.js
 
-      - name: Commit and push updated news.json
+      - name: Commit & Push Updated News
         run: |
-          git config user.name "AWB News Bot"
-          git config user.email "news-bot@awbtravelsandtours.com"
+          git config --global user.name "AWB News Bot"
+          git config --global user.email "news@awbtravelsandtours.com"
           git add public/news.json
-          git commit -m "✨ Auto-update news.json"
+          git commit -m "📰 Auto-update news.json"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
