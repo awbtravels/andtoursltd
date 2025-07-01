@@ -22,8 +22,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run News Fetch Script
-        run: node scripts/fetchNews.js   # ✅ MATCHES file name (camelCase)
+      - name: Show script files (debug)
+        run: ls -R scripts
+
+      - name: Run News Fetch Script using npx
+        run: npx node scripts/fetchNews.js
 
       - name: Commit & Push Updated News
         run: |
