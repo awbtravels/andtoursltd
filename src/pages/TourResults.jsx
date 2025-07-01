@@ -12,16 +12,14 @@ const TourResults = () => {
     const fetchTours = async () => {
       try {
         const response = await fetch(
-          `https://sandbox.viator.com/partner/v1/products/search?topX=12&categoryId=${categoryId}&currencyCode=USD&sortOrder=RECOMMENDED&destId=684`, 
+          `https://sandbox.viator.com/partner/v1/products/search?topX=10&categoryId=${categoryId}&destId=6840`, // London ID
           {
             headers: {
               'Accept': 'application/json',
-              'exp-api-key': '8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2' // Sandbox API Key
+              'exp-api-key': '8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2'
             }
           }
         );
-
-        if (!response.ok) throw new Error('API error');
 
         const data = await response.json();
         setTours(data.data || []);
@@ -37,13 +35,10 @@ const TourResults = () => {
   return (
     <div className="p-6 text-white">
       <h1 className="text-2xl font-bold text-red-500 mb-4">Tour Results</h1>
-
       {error && <p className="text-red-400">{error}</p>}
-
       {tours.length === 0 && !error && (
         <p className="text-gray-400">Loading tours...</p>
       )}
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tours.map((tour) => (
           <div key={tour.productCode} className="border border-red-500 rounded-lg p-4 hover:bg-red-500 hover:text-white transition">
