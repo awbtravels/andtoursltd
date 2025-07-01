@@ -1,38 +1,44 @@
-// src/pages/TourResults.jsx
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
-const TourResults = () => {
+export default function TourResults() {
   const { categoryId } = useParams();
   const [tours, setTours] = useState([]);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchTours = async () => {
+      setLoading(true);
+      setError(false);
+
       try {
-        const response = await fetch(
-          `https://sandbox.viator.com/partner/v1/products/search?topX=10&categoryId=${categoryId}&destId=6840`,
-          {
-            headers: {
-              'Accept': 'application/json',
-              'exp-api-key': '8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2',
-            },
-          }
-        );
+        const response = await fetch(`https://sandbox.viator.com/partner/v1/products/search`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "exp-api-key": "8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2", // Replace with production key after certification
+          },
+          body: JSON.stringify({
+            topX: 20,
+            sortOrder: "RELEVANCE",
+            categoryId: categoryId,
+            currencyCode: "USD",
+          }),
+        });
 
         const data = await response.json();
-        console.log("Viator API Response:", data); // ✅ Use browser console to check response
 
-        if (data && Array.isArray(data.data)) {
+        if (data?.data) {
           setTours(data.data);
         } else {
-          setError('No tours found for this category.');
-          console.error("Unexpected API response:", data);
+          setTours([]);
         }
       } catch (err) {
-        setError('Failed to load tours. Please try again.');
         console.error("Fetch error:", err);
+        setError(true);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -42,27 +48,33 @@ const TourResults = () => {
   }, [categoryId]);
 
   return (
-    <div className="p-6 text-white">
-      <h2 className="text-2xl font-bold mb-4 text-red-500">Tour Results</h2>
-      {error && <p className="text-red-400">{error}</p>}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <h1 className="text-2xl font-bold text-red-600 mb-4">Tour Results</h1>
+
+      {loading && <p className="text-gray-200">Loading tours...</p>}
+
+      {error && (
+        <p className="text-red-500 font-semibold">Failed to load tours. Please try again.</p>
+      )}
+
+      {!loading && !error && tours.length === 0 && (
+        <p className="text-red-500 font-semibold">No tours found for this category.</p>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
         {tours.map((tour) => (
-          <div key={tour.productCode} className="border rounded-xl p-4 bg-gray-800">
+          <div key={tour.productCode} className="border border-gray-700 rounded-lg p-4 bg-white text-black">
+            <h2 className="text-lg font-bold mb-2">{tour.title}</h2>
             <img
-              src={tour.thumbnailURL}
+              src={tour.images?.[0]?.url || ""}
               alt={tour.title}
-              className="w-full h-48 object-cover rounded mb-3"
+              className="w-full h-48 object-cover mb-2 rounded"
             />
-            <h3 className="text-lg font-semibold">{tour.title}</h3>
-            <p className="text-sm">{tour.description?.substring(0, 100)}...</p>
-            <p className="mt-2 text-green-400 font-semibold">
-              From {tour.pricingSummary?.fromPrice?.formatted} {tour.pricingSummary?.fromPrice?.currencyCode}
-            </p>
+            <p className="text-sm text-gray-700 line-clamp-3">{tour.shortDescription}</p>
+            <p className="text-red-700 font-bold mt-2">${tour.price ? tour.price.formatted : "N/A"}</p>
           </div>
         ))}
       </div>
     </div>
   );
-};
-
-export default TourResults;
+}
