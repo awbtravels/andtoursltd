@@ -1,66 +1,43 @@
-// src/pages/TourResults.jsx
+// src/pages/ToursPage.jsx
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+const tourCategories = [
+  { name: "City Tours", icon: "🏙️", categoryId: "d23" },
+  { name: "Adventure Tours", icon: "🌄", categoryId: "d26" },
+  { name: "Cultural Tours", icon: "🏛️", categoryId: "d32" },
+  { name: "Sightseeing Passes", icon: "🗺️", categoryId: "d30" },
+  { name: "Historical Tours", icon: "📜", categoryId: "d34" },
+  { name: "Food & Drink", icon: "🍽️", categoryId: "d17" },
+  { name: "Nature & Wildlife", icon: "🦁", categoryId: "d18" },
+  { name: "Luxury & Special Occasions", icon: "💎", categoryId: "d25" },
+];
 
-const TourResults = () => {
-  const { categoryId } = useParams();
-  const [tours, setTours] = useState([]);
-  const [error, setError] = useState('');
+export default function ToursPage() {
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        const response = await fetch(
-          `https://sandbox.viator.com/partner/v1/products/search?topX=12&categoryId=${categoryId}&currencyCode=USD&sortOrder=RECOMMENDED&destId=684`
-          , {
-          headers: {
-            'Accept': 'application/json',
-            'exp-api-key': '8170d1d5-4ef1-4019-9f5c-0f0a304a9ad2', // Your Viator sandbox API key
-          }
-        });
-
-        if (!response.ok) throw new Error('API error');
-
-        const data = await response.json();
-        setTours(data.data || []);
-      } catch (err) {
-        console.error(err);
-        setError('Failed to load tours. Please try again.');
-      }
-    };
-
-    fetchTours();
-  }, [categoryId]);
+  const handleCategoryClick = (categoryId) => {
+    navigate(`/tours/category/${categoryId}`);
+  };
 
   return (
-    <div className="p-6 text-white">
-      <h1 className="text-2xl font-bold text-red-500 mb-4">Tour Results</h1>
-
-      {error && <p className="text-red-400">{error}</p>}
-
-      {tours.length === 0 && !error && (
-        <p className="text-gray-400">Loading tours...</p>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tours.map((tour) => (
-          <div key={tour.productCode} className="border border-red-500 rounded-lg p-4 hover:bg-red-500 hover:text-white transition">
-            <h2 className="text-xl font-semibold">{tour.title}</h2>
-            <p>{tour.shortDescription?.substring(0, 120)}...</p>
-            <a
-              href={tour.webURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-block text-sm underline text-white"
-            >
-              View Details
-            </a>
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold text-red-600 mb-6">Explore Our Tours</h1>
+      <p className="text-gray-200 mb-8">
+        Select a tour category below to explore available tours powered by Viator.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {tourCategories.map((cat) => (
+          <div
+            key={cat.categoryId}
+            onClick={() => handleCategoryClick(cat.categoryId)}
+            className="border-2 border-red-500 p-4 rounded-lg text-white text-center font-semibold hover:bg-red-600 hover:text-white cursor-pointer transition duration-200"
+          >
+            <div className="text-2xl mb-2">{cat.icon}</div>
+            <div>{cat.name}</div>
           </div>
         ))}
       </div>
     </div>
   );
-};
-
-export default TourResults;
+}
