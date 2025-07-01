@@ -1,3 +1,4 @@
+// src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,7 +20,7 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
 import ToursPage from "./pages/ToursPage";
-import TourResults from "./pages/TourResults"; // Added TourResults route
+import TourResults from "./pages/TourResults"; // ✅ Viator category search
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
