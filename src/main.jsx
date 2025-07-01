@@ -1,11 +1,9 @@
-
-
 // src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import "./index.css"; // ✅ Tailwind CSS
+import "./index.css"; // Tailwind CSS
 
 // Page components
 import HomePage from "./pages/HomePage";
@@ -21,29 +19,29 @@ import NewsPage from "./pages/NewsPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
-import ToursPage from "./pages/ToursPage"; // ✅ Add this line
+import ToursPage from "./pages/ToursPage"; // Tours page
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-<React.StrictMode>
-<BrowserRouter>
-<Routes>
-<Route path="/" element={<Layout />}>
-<Route index element={<HomePage />} />
-<Route path="consultation" element={<ConsultationPage />} />
-<Route path="consultation-success" element={<ConsultationSuccess />} />
-<Route path="tours" element={<ToursPage />} /> {/* ✅ New Tours route /}
-<Route path="flights" element={<Flights />} />
-<Route path="hotels" element={<Hotels />} />
-<Route path="insurance" element={<Insurance />} />
-<Route path="cars" element={<Cars />} />
-<Route path="properties" element={<Properties />} />
-<Route path="services" element={<ServicesPage />} />
-<Route path="about" element={<AboutPage />} />
-<Route path="team" element={<Team />} /> {/ Still accessible from footer */}
-<Route path="news" element={<NewsPage />} />
-<Route path="testimonials" element={<TestimonialsPage />} />
-</Route>
-</Routes>
-</BrowserRouter>
-</React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="consultation" element={<ConsultationPage />} />
+          <Route path="consultation-success" element={<ConsultationSuccess />} />
+          <Route path="tours" element={<ToursPage />} />
+          <Route path="flights" element={<Flights />} />
+          <Route path="hotels" element={<Hotels />} />
+          <Route path="insurance" element={<Insurance />} />
+          <Route path="cars" element={<Cars />} />
+          <Route path="properties" element={<Properties />} />
+          <Route path="services" element={<ServicesPage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="team" element={<Team />} />
+          <Route path="news" element={<NewsPage />} />
+          <Route path="testimonials" element={<TestimonialsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
 );
