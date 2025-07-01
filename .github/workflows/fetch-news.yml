@@ -1,4 +1,4 @@
-name: ✨ Auto-Fetch News Every 20 Minutes
+name: 📰 Auto-Fetch News Every 20 Minutes
 
 on:
   schedule:
@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Run News Fetch Script
-        run: node scripts/fetchNews.js
+        run: node scripts/fetchNews.js  # ✅ Exact match (case-sensitive)
 
       - name: Commit & Push Updated News
         run: |
