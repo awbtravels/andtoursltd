@@ -1,73 +1,114 @@
-// src/pages/NewsPage.jsx
 import React, { useEffect, useState } from 'react';
-import Parser from 'rss-parser';
 import './NewsPage.css';
 
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
-  const [error, setError] = useState(null);
-  const [selectedArticle, setSelectedArticle] = useState(null);
-
-  const parser = new Parser();
-  const feedUrls = [
-    'https://daadscholarship.com/feed/',
-    'https://travelobiz.com/feed/',
-    'https://brightscholarship.com/feed/',
-    'https://goldrateinpak.com/feed/'
-  ];
 
   useEffect(() => {
-    const fetchFeeds = async () => {
-      try {
-        const allArticles = [];
-        for (const url of feedUrls) {
-          const feed = await parser.parseURL(url);
-          feed.items.forEach(item => {
-            allArticles.push(item);
-          });
-        }
-        const sorted = allArticles.sort(
-          (a, b) => new Date(b.pubDate) - new Date(a.pubDate)
-        );
-        setArticles(sorted);
-      } catch (err) {
-        setError('Failed to load news. Please try again later.');
-      }
-    };
-
-    fetchFeeds();
+    fetch('/news.json')
+      .then((res) => res.json())
+      .then((data) => setArticles(data))
+      .catch((err) => console.error('Failed to load news:', err));
   }, []);
 
   return (
     <div className="news-container">
-      <h2 className="news-header">Latest Travel News</h2>
-      {error && <p>{error}</p>}
-      <ul className="news-list">
+      <div className="news-header">
+        <img src="/logo.png" alt="AWB Logo" width="120" />
+        <h2 style={{ color: '#b30000' }}>Latest Travel News</h2>
+        <p className="slogan">....fulfilling your dream life</p>
+      </div>
+
+      <div className="news-grid">
         {articles.map((article, index) => (
-          <li key={index} className="news-item" onClick={() => setSelectedArticle(article)}>
-            <strong>{new Date(article.pubDate).toISOString().split('T')[0]}</strong> — {article.title}
-          </li>
-        ))}
-      </ul>
+          <div className="news-card" key={index}>
+            <img src={article.image} alt={article.title} className="news-image" />
+            <h3 className="news-title">{article.title}</h3>
+            <p className="news-excerpt">{article.excerpt}</p>
+            <a
+              href={`/news/${article.slug}`}
+              className="read-more"
+            >
+              Read Full Article
+            </a>
 
-      {/* Modal Viewer */}
-      {selectedArticle && (
-        <div className="modal-overlay" onClick={() => setSelectedArticle(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>{selectedArticle.title}</h3>
-            <p dangerouslySetInnerHTML={{ __html: selectedArticle.content || selectedArticle.contentSnippet }} />
-            <button onClick={() => setSelectedArticle(null)}>Close</button>
+            {/* Share Buttons */}
+            <div style={{ textAlign: 'center', padding: '10px' }}>
+              <a
+                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + '\n\nRead more: https://awbtravelsandtours.com/news/' + article.slug)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                📲 WhatsApp
+              </a>{' '}
+              |{' '}
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://awbtravelsandtours.com/news/${article.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                👍 Facebook
+              </a>{' '}
+              |{' '}
+              <a
+                href={`https://twitter.com/intent/tweet?url=https://awbtravelsandtours.com/news/${article.slug}&text=${encodeURIComponent(article.title)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🐦 Twitter
+              </a>{' '}
+              |{' '}
+              <a
+                href={`https://www.linkedin.com/shareArticle?url=https://awbtravelsandtours.com/news/${article.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                💼 LinkedIn
+              </a>{' '}
+              |{' '}
+              <a
+                href={`https://www.instagram.com/awbtravelsandtours/`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                📸 Instagram
+              </a>
+            </div>
+
+            {/* AdSense Block Between News */}
+            {(index + 1) % 3 === 0 && (
+              <div className="adsense-container">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9632060214761190" crossOrigin="anonymous"></script>
+                <ins
+                  className="adsbygoogle"
+                  style={{ display: 'block' }}
+                  data-ad-client="ca-pub-9632060214761190"
+                  data-ad-slot="1234567890"
+                  data-ad-format="auto"
+                  data-full-width-responsive="true"
+                ></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+              </div>
+            )}
           </div>
-        </div>
-      )}
+        ))}
+      </div>
 
-      {/* WhatsApp Channel Fixed Iframe */}
-      <iframe
-        className="whatsapp-fixed"
-        src="https://whatsapp.com/channel/0029VbAYnee7NoZyRmuvrT2P"
-        title="WhatsApp Channel"
-        allow="clipboard-write"
-      ></iframe>
+      {/* WhatsApp Channel Floating Icon */}
+      <a
+        href="https://whatsapp.com/channel/0029VbAYnee7NoZyRmuvrT2P"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          position: 'fixed',
+          right: '20px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 9999,
+        }}
+      >
+        <img src="/whatsapp-icon.png" alt="WhatsApp Channel" width="60" />
+      </a>
     </div>
   );
 };
