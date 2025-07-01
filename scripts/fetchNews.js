@@ -1,5 +1,3 @@
-// scripts/fetchNews.js
-
 const axios = require('axios');
 const cheerio = require('cheerio');
 const fs = require('fs');
@@ -59,6 +57,11 @@ async function fetchNews() {
     } catch (err) {
       console.error(`❌ Failed to fetch from ${source.name}:`, err.message);
     }
+  }
+
+  // ✅ Ensure public/ exists
+  if (!fs.existsSync('./public')) {
+    fs.mkdirSync('./public');
   }
 
   fs.writeFileSync('./public/news.json', JSON.stringify(news, null, 2));
