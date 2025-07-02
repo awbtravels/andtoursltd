@@ -2,16 +2,18 @@ name: 📰 Auto-Fetch News Every 20 Minutes
 
 on:
   schedule:
-    - cron: "*/20 * * * *"  # Runs every 20 minutes
-  workflow_dispatch:        # Allows manual trigger from GitHub UI
+    - cron: "*/20 * * * *"
+  workflow_dispatch:
 
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repository with GH_TOKEN
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
