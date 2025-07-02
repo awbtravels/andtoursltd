@@ -1,1 +1,33 @@
+name: 📰 Auto-Fetch News Every 20 Minutes
 
+on:
+  schedule:
+    - cron: '*/20 * * * *'  # Every 20 minutes
+  workflow_dispatch:
+
+jobs:
+  fetch-news:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🛠️ Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: 📰 Run RSS News Fetch Script
+        run: npm run fetch-news  # ✅ This runs scripts/fetchRssNews.js from package.json
+
+      - name: 💾 Commit & Push Updated News
+        run: |
+          git config --global user.name "AWB News Bot"
+          git config --global user.email "news@awbtravelsandtours.com"
+          git add public/news.json
+          git commit -m "📰 Auto-update news.json"
+          git push
