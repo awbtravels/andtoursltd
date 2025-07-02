@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -29,7 +31,7 @@ jobs:
         run: |
           git config --global user.name "AWB News Bot"
           git config --global user.email "newsbot@awbtravelsandtours.com"
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/awbtravels/andtoursltd.git
           git add public/news.json
           git commit -m "📰 Auto-update news.json" || echo "No changes to commit"
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/awbtravels/andtoursltd.git
           git push origin main
