@@ -2,18 +2,17 @@ name: 📰 Auto-Fetch News Every 20 Minutes
 
 on:
   schedule:
-    - cron: '*/20 * * * *'
+    - cron: "*/20 * * * *"
   workflow_dispatch:
 
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -21,7 +20,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run RSS News Fetch Script ✅
+      - name: Run RSS News Fetch Script
         run: node scripts/fetchRssNews.js
 
       - name: Commit & Push Updated News
@@ -29,5 +28,8 @@ jobs:
           git config --global user.name "AWB News Bot"
           git config --global user.email "news@awbtravelsandtours.com"
           git add public/news.json
-          git commit -m "📰 Auto-update news.json"
+          git commit -m "📰 Auto-update news.json" || echo "No changes to commit"
           git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        continue-on-error: true
