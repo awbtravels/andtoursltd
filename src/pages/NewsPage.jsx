@@ -1,6 +1,5 @@
-// src/pages/NewsPage.jsx
-
-import React, { useEffect, useState } from 'react';
+// src/pages/NewsPage.jsx  
+  import React, { useEffect, useState } from 'react';
 import './NewsPage.css';
 
 const NewsPage = () => {
@@ -9,13 +8,24 @@ const NewsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // ✅ Inject AdSense script only on NewsPage
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9632060214761190";
+    script.crossOrigin = "anonymous";
+    document.body.appendChild(script);
+
     const fetchNews = async () => {
       try {
         const response = await fetch('/news.json');
         const data = await response.json();
         setNews(data);
         const now = new Date();
-        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const timeString = now.toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
         setLastUpdated(timeString);
       } catch (err) {
         console.error('❌ Error loading news:', err);
@@ -28,7 +38,7 @@ const NewsPage = () => {
   }, []);
 
   const handleImageError = (e) => {
-    e.target.src = '/fallback.jpg'; // optional fallback image in public/
+    e.target.src = '/fallback.jpg';
   };
 
   return (
@@ -36,8 +46,12 @@ const NewsPage = () => {
       <div className="news-header">
         <h2>Latest Travel & Scholarship News</h2>
         <p className="slogan">....fulfilling your dream life</p>
-        <p className="last-updated">🕒 Last updated: <strong>{lastUpdated}</strong></p>
-        <p className="powered">⚡ Powered by <span className="bot-name">AWB News Bot</span></p>
+        <p className="last-updated">
+          🕒 Last updated: <strong>{lastUpdated}</strong>
+        </p>
+        <p className="powered">
+          ⚡ Powered by <span className="bot-name">AWB News Bot</span>
+        </p>
       </div>
 
       {loading ? (
@@ -58,13 +72,17 @@ const NewsPage = () => {
 
               {index > 0 && index % 2 === 0 && (
                 <div className="adsense-container">
-                  <ins className="adsbygoogle"
+                  <ins
+                    className="adsbygoogle"
                     style={{ display: 'block' }}
                     data-ad-client="ca-pub-9632060214761190"
                     data-ad-slot="1234567890"
                     data-ad-format="auto"
                     data-full-width-responsive="true"
                   ></ins>
+                  <script>
+                    {(window.adsbygoogle = window.adsbygoogle || []).push({})}
+                  </script>
                 </div>
               )}
             </div>
@@ -72,7 +90,7 @@ const NewsPage = () => {
         </div>
       )}
 
-      {/* Fixed WhatsApp Channel button */}
+      {/* Fixed WhatsApp Channel */}
       <a
         href="https://whatsapp.com/channel/0029VbAYnee7NoZyRmuvrT2P"
         className="whatsapp-float"
