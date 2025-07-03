@@ -1,10 +1,10 @@
-// scripts/manualPost.js
+// scripts/manualPost.mjs
 
 import fs from 'fs';
 import path from 'path';
-import { postToSocials } from './postToSocials.js';
+import { postToSocials } from './postToSocials.mjs'; // ✅ fix this extension
 
-const newsPath = path.resolve('./src/data/news.json'); // adjust path if needed
+const newsPath = path.resolve('./src/data/news.json');
 
 // Read the first news item (or choose the one you want)
 const rawData = fs.readFileSync(newsPath, 'utf-8');
