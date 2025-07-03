@@ -1,6 +1,6 @@
-// scripts/postToSocials.mjs
+// scripts/postToSocials.cjs
 
-import axios from 'axios';
+const axios = require('axios');
 
 // -----------------------------
 // ✅ Your Real Tokens and IDs
@@ -20,7 +20,7 @@ const LINKEDIN_ORGANIZATION_ID = 'urn:li:organization:103395420';
 // -----------------------------
 // 📣 Auto post function
 // -----------------------------
-export async function postToSocials({ title, link }) {
+async function postToSocials({ title, link }) {
   const message = `${title}\n\nRead more: ${link}\n\n🌐 awbtravelsandtours.com`;
 
   // ---------- 1. Facebook ----------
@@ -84,3 +84,6 @@ export async function postToSocials({ title, link }) {
     console.error('❌ LinkedIn Error:', error.response?.data || error.message);
   }
 }
+
+// Export
+module.exports = { postToSocials };
