@@ -14,8 +14,6 @@ import Insurance from "./pages/Insurance";
 import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
 import Team from "./pages/TeamPage";
-import NewsPage from "./pages/NewsPage";
-import NewsDetails from "./pages/NewsDetails";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import Cars from "./pages/Cars";
 import Properties from "./pages/Properties";
@@ -40,8 +38,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="services" element={<ServicesPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="team" element={<Team />} />
-          <Route path="news" element={<NewsPage />} />
-          <Route path="news/:slug" element={<NewsDetails />} />
+          {/* Removed NewsPage and NewsDetails routes */}
           <Route path="testimonials" element={<TestimonialsPage />} />
         </Route>
       </Routes>
