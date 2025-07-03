@@ -3,12 +3,11 @@ import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Newsletter from "./Newsletter";
-import emailjs from "@emailjs/browser"; // Add this import
+import emailjs from "@emailjs/browser";
 
 export default function Layout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Newsletter welcome email
   useEffect(() => {
     const form = document.querySelector("#mc-embedded-subscribe-form");
     if (form) {
@@ -18,7 +17,7 @@ export default function Layout() {
           emailjs
             .send(
               "service_oave8fr",
-              "template_tdg66zs", // newsletter template
+              "template_tdg66zs",
               { user_email: emailInput.value },
               "GamSTUvtdCEHyRlM2"
             )
@@ -33,7 +32,6 @@ export default function Layout() {
     }
   }, []);
 
-  // Live Chat Script
   useEffect(() => {
     const s1 = document.createElement("script");
     s1.src = "https://embed.tawk.to/68559a0aadefb9190f5fe0d5/1iu763f2p";
@@ -45,7 +43,6 @@ export default function Layout() {
 
   return (
     <>
-      {/* HEADER */}
       <header className="flex items-center justify-between px-6 py-4 bg-white shadow-md">
         <div className="flex items-center gap-2">
           <Link to="/">
@@ -69,7 +66,7 @@ export default function Layout() {
           <Link to="/properties" className="hover:text-red-primary">Properties</Link>
           <Link to="/services" className="hover:text-red-primary">Our Services</Link>
           <Link to="/about" className="hover:text-red-primary">About</Link>
-          <Link to="/news" className="hover:text-red-primary">News</Link>
+          <a href="https://awbtravelsandtours.com/news" className="hover:text-red-primary">News</a>
           <Link to="/testimonials" className="hover:text-red-primary">Testimonials</Link>
         </nav>
 
@@ -98,20 +95,16 @@ export default function Layout() {
           <Link to="/properties" className="block hover:text-red-primary">Properties</Link>
           <Link to="/services" className="block hover:text-red-primary">Our Services</Link>
           <Link to="/about" className="block hover:text-red-primary">About</Link>
-          <Link to="/news" className="block hover:text-red-primary">News</Link>
+          <a href="https://awbtravelsandtours.com/news" className="block hover:text-red-primary">News</a>
           <Link to="/testimonials" className="block hover:text-red-primary">Testimonials</Link>
         </nav>
       )}
 
-      {/* MAIN CONTENT */}
       <main className="min-h-screen bg-white text-charcoal font-sans">
         <Outlet />
       </main>
 
-      {/* NEWSLETTER */}
       <Newsletter />
-
-      {/* FOOTER */}
       <Footer />
     </>
   );
