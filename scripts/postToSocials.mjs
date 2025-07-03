@@ -1,4 +1,4 @@
-// scripts/postToSocials.js
+// scripts/postToSocials.mjs
 
 import axios from 'axios';
 
@@ -15,15 +15,15 @@ const TWITTER_ACCESS_TOKEN = '1759002016301350913-spuxsKWTfzSVN88f5cg2kpKs4nQI03
 const TWITTER_ACCESS_SECRET = '6h3l1Qx9zF0boAng9tfYfftHmDoN0ufMdMiruLU9rqkLO';
 
 const LINKEDIN_ACCESS_TOKEN = 'AQUCLEfZtXufnMTQwZ1dhZs4_jky508ZHQUt2pnZxkptpnyUDXu-ObNtM76zir4N4QcceTSGBgS9EpzWc8sEp_h5EgLA0td1aoxuG0f6-U5ukyrqVTX_FRLmBiINKVqD0p6R8I1hKp7xKkiD2pBdjpyziWrmFsoiH4';
-const LINKEDIN_ORGANIZATION_ID = 'urn:li:organization:103395420'; // Update this if your LinkedIn org ID is different
+const LINKEDIN_ORGANIZATION_ID = 'urn:li:organization:103395420';
 
 // -----------------------------
 // 📣 Auto post function
 // -----------------------------
-export const postToSocials = async ({ title, link }) => {
+export async function postToSocials({ title, link }) {
   const message = `${title}\n\nRead more: ${link}\n\n🌐 awbtravelsandtours.com`;
 
-  // ---------- 1. Post to Facebook ----------
+  // ---------- 1. Facebook ----------
   try {
     await axios.post(
       `https://graph.facebook.com/${FACEBOOK_PAGE_ID}/feed`,
@@ -37,7 +37,7 @@ export const postToSocials = async ({ title, link }) => {
     console.error('❌ Facebook Error:', error.response?.data || error.message);
   }
 
-  // ---------- 2. Post to Twitter ----------
+  // ---------- 2. Twitter ----------
   try {
     await axios.post(
       'https://api.twitter.com/2/tweets',
@@ -54,7 +54,7 @@ export const postToSocials = async ({ title, link }) => {
     console.error('❌ Twitter Error:', error.response?.data || error.message);
   }
 
-  // ---------- 3. Post to LinkedIn ----------
+  // ---------- 3. LinkedIn ----------
   try {
     await axios.post(
       'https://api.linkedin.com/v2/ugcPosts',
@@ -63,9 +63,7 @@ export const postToSocials = async ({ title, link }) => {
         lifecycleState: 'PUBLISHED',
         specificContent: {
           'com.linkedin.ugc.ShareContent': {
-            shareCommentary: {
-              text: message,
-            },
+            shareCommentary: { text: message },
             shareMediaCategory: 'NONE',
           },
         },
@@ -85,4 +83,4 @@ export const postToSocials = async ({ title, link }) => {
   } catch (error) {
     console.error('❌ LinkedIn Error:', error.response?.data || error.message);
   }
-};
+}
