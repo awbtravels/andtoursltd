@@ -7,6 +7,7 @@
     "deploy": "sanity deploy"
   },
   "dependencies": {
-    "sanity": "^3.37.2"
+    "sanity": "^3.37.2",
+    "@sanity/desk-tool": "^3.37.2"
   }
 }
