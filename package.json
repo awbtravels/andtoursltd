@@ -4,10 +4,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "fetch-news": "node scripts/fetchRssNews.js"
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "fetch-news": "node scripts/fetchRssNews.js",
+  "post-news": "node scripts/manualPost.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
