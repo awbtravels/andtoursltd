@@ -8,7 +8,7 @@
   "build": "vite build",
   "preview": "vite preview",
   "fetch-news": "node scripts/fetchRssNews.js",
-  "post-news": "node scripts/manualPost.mjs"
+  "post-news": "node scripts/manualPost.cjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
