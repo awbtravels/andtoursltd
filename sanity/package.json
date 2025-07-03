@@ -1,14 +1,12 @@
 {
   "name": "sanity",
   "private": true,
-  "version": "1.0.0",
   "scripts": {
     "dev": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy"
   },
   "dependencies": {
-    "sanity": "^3.37.0",
-    "@sanity/desk-tool": "^3.37.0"
+    "sanity": "^3.37.2"
   }
 }
