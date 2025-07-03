@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "sanity": "^3.37.2",
-    "@sanity/desk-tool": "^3.37.2"
+    "@sanity/desk-tool": "^3.36.2"
   }
 }
