@@ -47,7 +47,7 @@ export default function Footer() {
             📞 +2348026028245<br />
             📞 +2348102985914<br />
             ✉ info@awbtravelsandtours.com<br />
-            ✉ awbtravelsntours@outlook.com
+          
             ✉ customerservice@awbtravelsandtours.com
           </p>
         </div>
