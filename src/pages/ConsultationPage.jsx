@@ -67,7 +67,7 @@ const ConsultationPage = () => {
     const paystack = window.PaystackPop && window.PaystackPop.setup({
       key: "pk_live_0e2a65ed46c1518a031836f1b237091d8e9be2ba",
       email: formData.email,
-      amount: 50900 * 100,
+      amount: 900 * 100,
       currency: "NGN",
       firstname: formData.firstName,
       lastname: formData.lastName,
@@ -84,10 +84,10 @@ const ConsultationPage = () => {
         };
 
         // Send to user
-        emailjs.send("service_8ztnoge", "template_xy9rtlt", templateParams, "GamSTUvtdCEHyRlM2")
+        emailjs.send("service_oave8fr", "template_1xewhnf", templateParams, "GamSTUvtdCEHyRlM2")
           .then(() => {
             // Send to admin manually
-            emailjs.send("service_8ztnoge", "template_xy9rtlt", {
+            emailjs.send("service_oave8fr", "template_1xewhnf", {
               ...templateParams,
               email: "info@awbtravelsandtours.com"
             }, "GamSTUvtdCEHyRlM2").finally(() => {
@@ -112,7 +112,7 @@ const ConsultationPage = () => {
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto" }}>
       <h2 style={{ color: "red" }}>AWB Travels and Tours Ltd RC:7177769</h2>
       <h3 style={{ color: "black" }}>....fulfilling your dream life</h3>
-      <h3 style={{ color: "red" }}>Visa Consultation Booking (₦50,900)</h3>
+      <h3 style={{ color: "red" }}>Visa Consultation Booking (₦900)</h3>
 
       <form onSubmit={handleSubmit}>
         <div style={{ display: "flex", gap: "1rem" }}>
