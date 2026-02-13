@@ -31,7 +31,7 @@ export default function Team() {
         </div>
 
         <div>
-          <p className="font-bold text-lg">• Mopelade Akindiya</p>
+          <p className="font-bold text-lg">• Janet Olumide</p>
           <p className="italic">Human Resources</p>
           <p className="flex items-center gap-2">
             <FaEnvelope className="text-red-primary" />
@@ -42,7 +42,7 @@ export default function Team() {
         </div>
 
         <div>
-          <p className="font-bold text-lg">• Iyabo Akins</p>
+          <p className="font-bold text-lg">• Jadesola Akinyemi</p>
           <p className="italic">Customer Service Lead</p>
           <p className="flex items-center gap-2">
             <FaEnvelope className="text-red-primary" />
