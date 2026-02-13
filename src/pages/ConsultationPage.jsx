@@ -84,12 +84,12 @@ const ConsultationPage = () => {
         };
 
         // Send to user
-        emailjs.send("service_oave8fr", "template_1xewhnf", templateParams, "GamSTUvtdCEHyRlM2")
+        emailjs.send("service_8ztnoge", "template_xy9rtlt", templateParams, "GamSTUvtdCEHyRlM2")
           .then(() => {
             // Send to admin manually
-            emailjs.send("service_oave8fr", "template_1xewhnf", {
+            emailjs.send("service_8ztnoge", "template_xy9rtlt", {
               ...templateParams,
-              email: "awbtravelsntours@outlook.com"
+              email: "info@awbtravelsandtours.com"
             }, "GamSTUvtdCEHyRlM2").finally(() => {
               window.location.href = "/consultation-success";
             });
