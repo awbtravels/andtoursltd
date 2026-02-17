@@ -16,10 +16,10 @@ export default function Layout() {
         if (emailInput && emailInput.value) {
           emailjs
             .send(
-              "service_oave8fr",
-              "template_tdg66zs",
+              "service_8ztnoge",
+              "template_xy9rtlt",
               { user_email: emailInput.value },
-              "GamSTUvtdCEHyRlM2"
+              "5lgqwoWvTKS8I0Pi5"
             )
             .then((res) => {
               console.log("Welcome email sent:", res.status);
