@@ -59,7 +59,7 @@ export default function Footer() {
             <li><a href="https://www.facebook.com/share/1Adryh8WSU/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><FaFacebook className="inline mr-2" />Facebook</a></li>
             <li><a href="https://whatsapp.com/channel/0029VbAYnee7NoZyRmuvrT2P" target="_blank" rel="noopener noreferrer"><FaWhatsapp className="inline mr-2" />WhatsApp</a></li>
             <li><a href="http://www.youtube.com/@AWBTRAVELSAndToursLTD-pf5qf" target="_blank" rel="noopener noreferrer"><FaYoutube className="inline mr-2" />YouTube</a></li>
-            <li><a href="https://www.tiktok.com/@awb_travels_and_toursltd" target="_blank" rel="noopener noreferrer"><FaTiktok className="inline mr-2" />TikTok</a></li>
+            <li><a href="https://www.tiktok.com/@awb_travelsandtoursltd?_r=1&_t=ZN-94irsOVAwd8" target="_blank" rel="noopener noreferrer"><FaTiktok className="inline mr-2" />TikTok</a></li>
             <li><a href="https://x.com/AwbTravelsnTour?t=ArfjB" target="_blank" rel="noopener noreferrer"><FaTwitter className="inline mr-2" />Twitter</a></li>
             <li><a href="https://www.linkedin.com/in/awb-travles-and-tours-ltd-a717442b5" target="_blank" rel="noopener noreferrer"><FaLinkedin className="inline mr-2" />LinkedIn</a></li>
             <li><a href="https://www.yelp.com/user_details?userid=J0gFE-D10yQPtY9cKX9thA" target="_blank" rel="noopener noreferrer"><FaYelp className="inline mr-2" />Yelp</a></li>
