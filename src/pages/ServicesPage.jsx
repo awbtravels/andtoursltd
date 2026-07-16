@@ -138,6 +138,8 @@ export default function ServicesPage() {
             <li>Airport Protocol Services</li>
             <li>Airport Transfers & Car Rentals</li>
             <li>International Passport Assistance</li>
+            <li>Police Clearance Certificate (PCC) Processing</li>
+            <li>Document Legalization & Authentication</li>
             <li>Business Registration (CAC)</li>
             <li>Booking of Flights, Ships, Cruises, Trains & Taxis</li>
             <li>Tourist Attraction & Event Ticket Bookings</li>
