@@ -27,12 +27,13 @@ export default function ServicesPage() {
             <li>Student Visa</li>
             <li>Family Visa</li>
             <li>Medical Visa</li>
+            <li>Job Seeker Visa</li>
           </ul>
 
           <p className="mt-4 text-gray-700">
-            We provide visa support for destinations including the United
-            Kingdom, Canada, United States, Schengen countries, South Africa,
-            Japan, Brazil, Malaysia, Australia, UAE, and many more.
+            We provide visa support for destinations including the United Kingdom 🇬🇧,  Canada 🇨🇦,
+            United States 🇺🇸,  Schengen/European 🇪🇺 countries, Australia 🇦🇺, Ireland 🇮🇪, South Africa 🇿🇦,
+            New Zealand 🇳🇿,  Brazil 🇧🇷, Asia Countries, GCC Countries and many more.
           </p>
         </div>
 
@@ -119,6 +120,7 @@ export default function ServicesPage() {
             <li>🇦🇷 Argentina</li>
             <li>🇧🇷 Brazil</li>
             <li>🇨🇦 Canada</li>
+            <li>🇺🇾 Uruguay</li>
           </ul>
         </div>
 
