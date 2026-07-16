@@ -1,80 +1,76 @@
-{/* Additional Services */}
-<div className="bg-white shadow rounded-lg p-6">
-  <h2 className="text-2xl font-bold mb-4">
-    🌟 Additional Services
+{/* Why Choose Us */}
+<section className="bg-white shadow rounded-lg p-8 mt-12">
+  <h2 className="text-3xl font-bold text-red-primary mb-8">
+    Why Choose Us?
   </h2>
 
-  <div className="space-y-6">
+  <div className="grid md:grid-cols-2 gap-6">
 
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        🛡️ Travel Insurance
-      </h3>
-      <p className="text-gray-700">
-        Comprehensive travel insurance for Medical, Student, Business and
-        Tourist travel to give you peace of mind wherever you go.
-      </p>
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">🕒</span>
+      <div>
+        <h3 className="font-semibold text-lg">24/7 Customer Support</h3>
+        <p className="text-gray-600">
+          Our dedicated team is available around the clock to assist you before,
+          during, and after your trip.
+        </p>
+      </div>
     </div>
 
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        🚘 Airport Transfers & Car Rentals
-      </h3>
-      <p className="text-gray-700">
-        Enjoy reliable airport pickup, drop-off services and affordable car
-        rental options for business and leisure travel.
-      </p>
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">⚡</span>
+      <div>
+        <h3 className="font-semibold text-lg">Fast & Reliable Processing</h3>
+        <p className="text-gray-600">
+          We process visa applications, travel documents, and bookings quickly
+          while maintaining accuracy and professionalism.
+        </p>
+      </div>
     </div>
 
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        🎫 Tourist Attractions & Event Ticket Bookings
-      </h3>
-      <p className="text-gray-700">
-        Book tickets for top tourist attractions, concerts, sporting events,
-        festivals, amusement parks and other exciting experiences.
-      </p>
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">💰</span>
+      <div>
+        <h3 className="font-semibold text-lg">Affordable Prices</h3>
+        <p className="text-gray-600">
+          Enjoy quality travel solutions and competitive pricing without
+          compromising on service.
+        </p>
+      </div>
     </div>
 
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        🚢 Booking of Ships, Cruises, Trains & Taxis
-      </h3>
-      <p className="text-gray-700">
-        We arrange domestic and international transportation including cruise
-        vacations, ferry services, train tickets and taxi reservations.
-      </p>
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">👨‍💼</span>
+      <div>
+        <h3 className="font-semibold text-lg">Experienced Travel Consultants</h3>
+        <p className="text-gray-600">
+          Our knowledgeable consultants provide expert guidance for visas,
+          travel planning, documentation, and immigration services.
+        </p>
+      </div>
     </div>
 
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        🚗 Car & Property Sales
-      </h3>
-      <p className="text-gray-700">
-        We connect clients with trusted opportunities to buy quality vehicles
-        and properties both locally and internationally.
-      </p>
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">🌍</span>
+      <div>
+        <h3 className="font-semibold text-lg">Personalized Travel Plans</h3>
+        <p className="text-gray-600">
+          Every itinerary is tailored to your budget, preferences, and travel
+          goals for a seamless experience.
+        </p>
+      </div>
     </div>
 
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        🏗️ Logistics & Construction Projects
-      </h3>
-      <p className="text-gray-700">
-        Professional logistics solutions and project support for construction,
-        procurement and related business services.
-      </p>
-    </div>
-
-    <div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-        🌍 Daily Immigration News & Travel Tips
-      </h3>
-      <p className="text-gray-700">
-        Stay informed with the latest immigration updates, visa policy changes,
-        travel advisories and practical travel tips from around the world.
-      </p>
+    <div className="flex items-start space-x-3">
+      <span className="text-2xl">🤝</span>
+      <div>
+        <h3 className="font-semibold text-lg">Trusted & Professional Service</h3>
+        <p className="text-gray-600">
+          We are committed to transparency, integrity, and delivering excellent
+          customer satisfaction every step of the way.
+        </p>
+      </div>
     </div>
 
   </div>
-</div>
+</section>
