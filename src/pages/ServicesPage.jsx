@@ -146,39 +146,3 @@ export default function ServicesPage() {
             <li>Logistics & Construction Projects</li>
           </ul>
         </div>
-
-      </div>
-    
-       {/* Why Choose Us */}
-      <div className="mt-12 bg-white shadow-lg rounded-2xl p-8">
-        <h2 className="text-4xl font-bold text-black mb-8">
-          Why Choose Us?
-        </h2>
-
-        <ul className="space-y-6 text-gray-600 text-xl">
-          <li className="flex items-center">
-            <span className="text-3xl mr-4">•</span>
-            24/7 Support
-          </li>
-
-          <li className="flex items-center">
-            <span className="text-3xl mr-4">•</span>
-            Fast & Reliable Processing
-          </li>
-
-          <li className="flex items-center">
-            <span className="text-3xl mr-4">•</span>
-            Affordable Prices
-          </li>
-
-          <li className="flex items-center">
-            <span className="text-3xl mr-4">•</span>
-            Experienced Travel Consultants
-          </li>
-
-          <li className="flex items-center">
-            <span className="text-3xl mr-4">•</span>
-            Personalized Travel Plans
-          </li>
-        </ul>
-      </div>
