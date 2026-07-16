@@ -126,23 +126,25 @@ export default function ServicesPage() {
         </div>
 
         {/* Other Services */}
-        <div className="bg-white shadow rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">
-            Other Travel & Business Services
-          </h2>
+<div className="bg-white shadow rounded-lg p-6">
+  <h2 className="text-2xl font-bold mb-4">
+    Other Travel & Business Services
+  </h2>
 
-          <ul className="list-disc pl-6 space-y-2 text-gray-700">
-            <li>Flight Booking & Itinerary Preparation</li>
-            <li>Travel Insurance (Medical, Student, Business & Tourist)</li>
-            <li>Hotel Reservations (Local & International)</li>
-            <li>Airport Protocol Services</li>
-            <li>Airport Transfers & Car Rentals</li>
-            <li>International Passport Assistance</li>
-            <li>Business Registration (CAC)</li>
-            <li>Booking of Flights, Ships, Cruises, Trains & Taxis</li>
-            <li>Tourist Attraction & Event Ticket Bookings</li>
-            <li>Daily Immigration News & Travel Tips</li>
-            <li>Car & Property Sales</li>
-            <li>Logistics & Construction Projects</li>
-          </ul>
-        </div>
+  <ul className="list-disc pl-6 space-y-2 text-gray-700">
+    <li>Flight Booking & Itinerary Preparation</li>
+    <li>Travel Insurance (Medical, Student, Business & Tourist)</li>
+    <li>Hotel Reservations (Local & International)</li>
+    <li>Airport Protocol Services</li>
+    <li>Airport Transfers & Car Rentals</li>
+    <li>International Passport Assistance</li>
+    <li>Police Clearance Certificate (PCC) Processing</li>
+    <li>Document Legalization & Authentication</li>
+    <li>Business Registration (CAC)</li>
+    <li>Booking of Flights, Ships, Cruises, Trains & Taxis</li>
+    <li>Tourist Attraction & Event Ticket Bookings</li>
+    <li>Daily Immigration News & Travel Tips</li>
+    <li>Car & Property Sales</li>
+    <li>Logistics & Construction Projects</li>
+  </ul>
+</div>
