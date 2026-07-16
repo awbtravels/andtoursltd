@@ -32,9 +32,9 @@ export default function ServicesPage() {
           </ul>
 
           <p className="mt-4 text-gray-700">
-            We provide visa support for destinations including the United Kingdom 🇬🇧,  Canada 🇨🇦,
-            United States 🇺🇸,  Schengen 🇪🇺 countries, Australia 🇦🇺, Ireland 🇮🇪, South Africa 🇿🇦,
-            New Zealand 🇳🇿,  Brazil 🇧🇷, Asia Countries, GCC Countries and many more.
+            We provide visa support for destinations including the United Kingdom 🇬🇧, Canada 🇨🇦,
+            United States 🇺🇸, Schengen 🇪🇺 countries, Australia 🇦🇺, Ireland 🇮🇪, South Africa 🇿🇦,
+            New Zealand 🇳🇿, China 🇨🇳, Brazil 🇧🇷, Asia Countries, GCC Countries and many more.
           </p>
         </div>
 
